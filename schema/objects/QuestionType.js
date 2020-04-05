@@ -24,4 +24,4 @@ const QuestionType = new GraphQLObjectType({
     })
 })
 
-export default QuestionType;
+module.exports = QuestionType;

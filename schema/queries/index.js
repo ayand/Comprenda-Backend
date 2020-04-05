@@ -5,6 +5,7 @@ const { currentUser } = require('./user');
 const { profile } = require('./profile');
 const { post, postsByCreator } = require('./post');
 const { languages } = require('./language');
+const { question, questionsByPost } = require('./question');
 
 const RootQueryType = new GraphQLObjectType({
   name: 'RootQueryType',
@@ -13,7 +14,9 @@ const RootQueryType = new GraphQLObjectType({
       profile,
       post,
       postsByCreator,
-      languages
+      languages,
+      question,
+      questionsByPost
   })
 });
 

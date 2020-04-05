@@ -4,9 +4,9 @@ function createPost(creator, title, body, description, language) {
     return (new Post({ creator, title, body, description, language })).save();
 }
 
-function editPost(id, creator, title, body, description, language) {
-    const updatedFields = { creator, title, body, description, language };
-    return Post.findOneAndUpdate({ id }, { $set: updatedFields }, { new: true });
+function editPost(id, title, body, description) {
+    const updatedFields = { title, body, description };
+    return Post.findByIdAndUpdate({ _id: id }, { $set: updatedFields }, { new: true });
 }
 
 function getPost(id) {

@@ -3,10 +3,14 @@ const {
     GraphQLObjectType,
     GraphQLString,
     GraphQLID,
-    GraphQLBoolean
+    GraphQLBoolean,
+    GraphQLList
 } = graphql;
 
+const QuestionService = require('../../services/question');
 const UserService = require('../../services/user');
+
+const QuestionType = require('./QuestionType')
 
 const PostType = new GraphQLObjectType({
     name: 'PostType',
@@ -21,6 +25,12 @@ const PostType = new GraphQLObjectType({
             type: require('./UserType'),
             resolve(parentValue) {
                 return UserService.getUser(parentValue.creator);
+            }
+        },
+        questions: {
+            type: new GraphQLList(QuestionType),
+            resolve(parentValue) {
+                return QuestionService.getQuestionsByPost(parentValue.id);
             }
         }
     })
