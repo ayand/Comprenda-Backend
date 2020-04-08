@@ -17,4 +17,8 @@ function getPostsByCreator(creator) {
     return Post.find({ creator });
 }
 
-module.exports = { createPost, editPost, getPost, getPostsByCreator }
+function search(searchString, page) {
+    return Post.find({ $text: { $search: searchString } }).skip((page - 1) * 10).limit(10)
+}
+
+module.exports = { createPost, editPost, getPost, getPostsByCreator, search }

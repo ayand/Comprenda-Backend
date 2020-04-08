@@ -1,5 +1,5 @@
 const graphql = require('graphql');
-const { GraphQLObjectType, GraphQLID, GraphQLList } = graphql;
+const { GraphQLObjectType, GraphQLID, GraphQLList, GraphQLInt, GraphQLString } = graphql;
 
 const PostType = require('../objects/PostType');
 const PostService = require('../../services/post');
@@ -17,6 +17,13 @@ module.exports = {
         args: { creator: { type: GraphQLID } },
         resolve(parentValue, { creator }, req) {
             return PostService.getPostsByCreator(creator);
+        }
+    },
+    posts: {
+        type: new GraphQLList(PostType),
+        args: { searchString: { type: GraphQLString }, index: { type: GraphQLInt } },
+        resolve(parentValue, { searchString, index }, req) {
+            return PostService.search(searchString, index);
         }
     }
 }
