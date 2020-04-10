@@ -1,11 +1,11 @@
 const Profile = require('../../models/Profile');
 
-function createProfile(name, bio, user) {
-    return (new Profile({ name, bio, user })).save();
+function createProfile(name, bio, languages, user) {
+    return (new Profile({ name, bio, user, languages })).save();
 }
 
-function editProfile(name, bio, user) {
-    const updatedFields = { name, bio }
+function editProfile(name, bio, languages, user) {
+    const updatedFields = { name, bio, languages }
     return Profile.findOneAndUpdate({ user }, { $set: updatedFields }, { new: true });
 }
 

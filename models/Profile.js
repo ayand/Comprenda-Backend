@@ -13,7 +13,10 @@ const ProfileSchema = new Schema({
     bio: {
         type: String,
         required: true
-    }
+    },
+    languages: [{
+        type: String
+    }]
 });
 
 ProfileSchema.index({ name: 'text' });
