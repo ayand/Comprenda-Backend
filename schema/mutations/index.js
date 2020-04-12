@@ -8,6 +8,7 @@ const { createProfile, editProfile } = require('./profile');
 const { createPost, editPost } = require('./post');
 const { addLanguage } = require('./language');
 const { createQuestion } = require('./question');
+const { createSubmission } = require('./submission');
 
 const mutation = new GraphQLObjectType({
     name: 'Mutation',
@@ -20,7 +21,8 @@ const mutation = new GraphQLObjectType({
         createPost,
         editPost,
         addLanguage,
-        createQuestion
+        createQuestion,
+        createSubmission
     }
 });
 
