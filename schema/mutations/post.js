@@ -4,6 +4,7 @@ const {
     GraphQLID
 } = graphql;
 
+const PostInputType = require('../objects/input/PostInputType');
 const PostType = require('../objects/PostType');
 const PostService = require('../../services/post');
 
@@ -11,25 +12,21 @@ const postMutations = {
     createPost: {
         type: PostType,
         args: {
-            title: { type: GraphQLString },
-            body: { type: GraphQLString },
-            description: { type: GraphQLString },
-            language: { type: GraphQLString }
+            post: { type: PostInputType }
         },
-        resolve(parentValue, { title, body, description, language }, req) {
-            return PostService.createPost(req.user.id, title, body, description, language);
+        resolve(parentValue, { post }, req) {
+            const { title, body, description, language, questions } = post;
+            return PostService.createPost(req.user.id, title, body, description, language, questions);
         }
     },
     editPost: {
         type: PostType,
         args: {
-            id: { type: GraphQLID },
-            title: { type: GraphQLString },
-            body: { type: GraphQLString },
-            description: { type: GraphQLString }
+            post: { type: PostInputType }
         },
-        resolve(parentValue, { id, title, body, description }, req) {
-            return PostService.editPost(id, title, body, description);
+        resolve(parentValue, { post }, req) {
+            const { id, title, body, description, language, questions } = post;
+            return PostService.editPost(id, title, body, description, questions);
         }
     }
 }
