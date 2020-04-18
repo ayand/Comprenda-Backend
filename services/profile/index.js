@@ -17,4 +17,8 @@ function getProfileByUser(user) {
     return Profile.findOne({ user })
 }
 
-module.exports = { createProfile, getProfile, getProfileByUser, editProfile }
+function search(searchString, page) {
+    return Profile.find({ $text: { $search: searchString } }).skip((page - 1) * 10).limit(10)
+}
+
+module.exports = { createProfile, getProfile, getProfileByUser, editProfile, search }
