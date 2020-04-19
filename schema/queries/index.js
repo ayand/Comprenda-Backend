@@ -7,6 +7,7 @@ const { post, postsByCreator, posts } = require('./post');
 const { languages } = require('./language');
 const { question, questionsByPost } = require('./question');
 const { submission, submissionsByUser } = require('./submission');
+const { reviewsByPost } = require('./review');
 
 const RootQueryType = new GraphQLObjectType({
   name: 'RootQueryType',
@@ -21,7 +22,8 @@ const RootQueryType = new GraphQLObjectType({
       question,
       questionsByPost,
       submission,
-      submissionsByUser
+      submissionsByUser,
+      reviewsByPost
   })
 });
 
