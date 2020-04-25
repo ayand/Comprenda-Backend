@@ -26,7 +26,7 @@ const ReviewType = new GraphQLObjectType({
         author: {
             type: require('./UserType'),
             resolve(parentValue) {
-                return UserService.getUser(parentValue.user);
+                return UserService.getUser(parentValue.author);
             }
         }
     })

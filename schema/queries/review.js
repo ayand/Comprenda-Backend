@@ -1,12 +1,12 @@
 const graphql = require('graphql');
-const { GraphQLObjectType, GraphQLID, GraphQLInt } = graphql;
+const { GraphQLObjectType, GraphQLID, GraphQLInt, GraphQLList } = graphql;
 
 const ReviewType = require('../objects/ReviewType');
 const ReviewService = require('../../services/review');
 
 module.exports = {
     reviewsByPost: {
-        type: ReviewType,
+        type: new GraphQLList(ReviewType),
         args: {
             post: { type: GraphQLID },
             page: { type: GraphQLInt }
