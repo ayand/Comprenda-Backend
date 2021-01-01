@@ -10,6 +10,8 @@ const expressGraphQL = require('express-graphql');
 const MongoStore = require('connect-mongo')(session);
 const schema = require('./schema');
 const mongoose = require('mongoose');
+require('dotenv').config();
+
 
 const connectDB = require('./config/db');
 
@@ -36,7 +38,8 @@ var allowCrossDomain = function(req, res, next) {
 //complain about CORS
 app.use(allowCrossDomain);
 
-connectDB();
+// MongoDB Database connection should be stored in .env variable called MONGODB
+connectDB(process.env.MONGODB);
 
 const db = mongoose.connection
     .once('open', () => console.log('Connected to MongoLab instance.'))
